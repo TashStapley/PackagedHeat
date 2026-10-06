@@ -1,2 +1,0 @@
-import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
-export const submissions=sqliteTable("submissions",{id:integer("id").primaryKey({autoIncrement:true}),name:text("name").notNull(),email:text("email").notNull(),phone:text("phone").notNull(),company:text("company").notNull(),rooms:integer("rooms").notNull(),decider:text("decider").notNull(),submissionDate:text("submission_date").notNull(),submissionTime:text("submission_time").notNull(),submittedAt:text("submitted_at").notNull()});

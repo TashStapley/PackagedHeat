@@ -1,8 +1,8 @@
-import { env } from "cloudflare:workers";
+import { neon } from "@neondatabase/serverless";
 
 const schema = `
   CREATE TABLE IF NOT EXISTS submissions (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
     email TEXT NOT NULL,
     phone TEXT NOT NULL,
@@ -23,6 +23,12 @@ function clean(value: unknown, max = 200) {
 
 export async function POST(request: Request) {
   try {
+    if (!process.env.DATABASE_URL) {
+      throw new Error("DATABASE_URL is not configured.");
+    }
+
+    const sql = neon(process.env.DATABASE_URL);
+
     const body = (await request.json()) as Record<string, unknown>;
 
     const name = clean(body.name);
@@ -32,11 +38,9 @@ export async function POST(request: Request) {
     const decider = clean(body.decider);
     const rooms = Number(body.rooms);
 
-    // Check both consent boxes
     const consentAccepted = body.consent === "yes";
     const termsAccepted = body.termsAccepted === "yes";
 
-    // Check all required fields
     if (
       !name ||
       !email ||
@@ -47,14 +51,11 @@ export async function POST(request: Request) {
       rooms < 1
     ) {
       return Response.json(
-        {
-          error: "Please complete every field before submitting.",
-        },
+        { error: "Please complete every field before submitting." },
         { status: 400 }
       );
     }
 
-    // Check consent
     if (!consentAccepted || !termsAccepted) {
       return Response.json(
         {
@@ -65,20 +66,14 @@ export async function POST(request: Request) {
       );
     }
 
-    // Check email address
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return Response.json(
-        {
-          error: "Please enter a valid email address.",
-        },
+        { error: "Please enter a valid email address." },
         { status: 400 }
       );
     }
 
-    const db = (env as unknown as { DB: D1Database }).DB;
-
-    // Make sure submissions table exists
-    await db.prepare(schema).run();
+    await sql.query(schema);
 
     const now = new Date();
 
@@ -97,45 +92,37 @@ export async function POST(request: Request) {
       hour12: false,
     }).format(now);
 
-    // Save competition entry
-    await db
-      .prepare(
-        `
-          INSERT INTO submissions (
-            name,
-            email,
-            phone,
-            company,
-            rooms,
-            decider,
-            submission_date,
-            submission_time,
-            submitted_at
-          )
-          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-        `
-      )
-      .bind(
+    await sql`
+      INSERT INTO submissions (
         name,
-        email.toLowerCase(),
+        email,
         phone,
         company,
         rooms,
         decider,
-        submissionDate,
-        submissionTime,
-        now.toISOString()
+        submission_date,
+        submission_time,
+        submitted_at
       )
-      .run();
+      VALUES (
+        ${name},
+        ${email.toLowerCase()},
+        ${phone},
+        ${company},
+        ${rooms},
+        ${decider},
+        ${submissionDate},
+        ${submissionTime},
+        ${now.toISOString()}
+      )
+    `;
 
     return Response.json({ ok: true });
   } catch (error) {
     console.error("Submission error:", error);
 
     return Response.json(
-      {
-        error: "We couldn't save your entry. Please try again.",
-      },
+      { error: "We couldn't save your entry. Please try again." },
       { status: 500 }
     );
   }
