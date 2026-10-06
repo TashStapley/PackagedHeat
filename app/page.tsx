@@ -60,9 +60,9 @@ export default function Home() {
     }
 
     if (!email) {
-      newErrors.email = "Please enter your email address.";
+      newErrors.email = "Please enter your company email address.";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      newErrors.email = "Please enter a valid email address.";
+      newErrors.email = "Please enter a valid company email address.";
     }
 
     if (!phone) {
@@ -287,7 +287,7 @@ export default function Home() {
 
             <label className="form-field">
               <Icon tone="#294d75">✉</Icon>
-              <span>EMAIL ADDRESS</span>
+              <span>COMPANY EMAIL</span>
 
               <input
                 name="email"

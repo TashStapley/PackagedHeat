@@ -1553,3 +1553,43 @@ input::placeholder {
 .footer-message {
   pointer-events: auto;
 }
+
+/* Keep validation messages on one line underneath the input */
+
+/* Number of hotel rooms */
+.answer-block .field-error {
+  grid-column: 3;
+  width: 100%;
+  white-space: nowrap;
+  margin-top: 2px;
+}
+
+/* Contact name, company, email and phone */
+.form-field .field-error {
+  grid-column: 3;
+  width: 100%;
+  white-space: nowrap;
+  margin-top: 2px;
+}
+
+/* Tablet layout */
+@media (min-width: 768px) and (max-width: 1366px) {
+  .answer-block .field-error {
+    grid-column: 3;
+  }
+
+  .form-field .field-error {
+    grid-column: 3;
+  }
+}
+
+/* Phone layout */
+@media (max-width: 760px) {
+  .answer-block .field-error {
+    grid-column: 2;
+  }
+
+  .form-field .field-error {
+    grid-column: 2;
+  }
+}
