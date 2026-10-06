@@ -191,7 +191,7 @@ export default function Home() {
           </p>
 
           <p className="instruction">
-            GUESS CORRECTLY AND <strong>WIN A PRIZE!</strong>
+            GUESS CORRECTLY AND ENTER A DRAW TO <strong>WIN A PRIZE!</strong>
           </p>
         </header>
 
