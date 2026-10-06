@@ -45,7 +45,9 @@ export default function Home() {
       form.reset();
     } catch (error) {
       setStatus("error");
-      setMessage(error instanceof Error ? error.message : "Please try again.");
+      setMessage(
+        error instanceof Error ? error.message : "Please try again."
+      );
     }
   }
 
@@ -55,7 +57,10 @@ export default function Home() {
         ADMIN
       </a>
 
-      <section className="competition-card" aria-labelledby="competition-title">
+      <section
+        className="competition-card"
+        aria-labelledby="competition-title"
+      >
         <div className="decorative-hex hex-one" aria-hidden="true" />
         <div className="decorative-hex hex-two" aria-hidden="true" />
         <div className="decorative-hex hex-three" aria-hidden="true" />
@@ -86,17 +91,6 @@ export default function Home() {
           </p>
         </header>
 
-        <aside className="badge" aria-label="Guess correctly to win">
-          <span className="gift">▥</span>
-          <b>
-            GUESS
-            <br />
-            CORRECTLY
-            <br />
-            <em>TO WIN!</em>
-          </b>
-        </aside>
-
         <div className="hero-brand">
           <img
             src="/image/packaged-heat-logo.png"
@@ -106,8 +100,29 @@ export default function Home() {
 
         <form className="entry-form" onSubmit={submitEntry}>
           <div className="answer-block">
-            <Icon tone="#18283d">▥</Icon>
+            <Icon tone="#18283d">
+              <svg
+                width="23"
+                height="23"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M8 4h8" />
+                <path d="M12 2v5" />
+                <path d="M7 7h10v5H7z" />
+                <path d="M7 9H4" />
+                <path d="M17 9h2a3 3 0 0 1 3 3v2" />
+                <path d="M22 16.5c0 1.4-.9 2.5-2 2.5s-2-1.1-2-2.5c0-1.1 2-3.5 2-3.5s2 2.4 2 3.5z" />
+              </svg>
+            </Icon>
+
             <label htmlFor="rooms">NUMBER OF HOTEL ROOMS</label>
+
             <input
               id="rooms"
               name="rooms"
@@ -123,6 +138,7 @@ export default function Home() {
             <label className="form-field">
               <Icon tone="#c72535">♙</Icon>
               <span>CONTACT NAME</span>
+
               <input
                 name="name"
                 autoComplete="name"
@@ -134,6 +150,7 @@ export default function Home() {
             <label className="form-field">
               <Icon tone="#18283d">▤</Icon>
               <span>COMPANY NAME</span>
+
               <input
                 name="company"
                 autoComplete="organization"
@@ -145,6 +162,7 @@ export default function Home() {
             <label className="form-field">
               <Icon tone="#294d75">✉</Icon>
               <span>EMAIL ADDRESS</span>
+
               <input
                 name="email"
                 type="email"
@@ -157,6 +175,7 @@ export default function Home() {
             <label className="form-field">
               <Icon tone="#77716e">⌕</Icon>
               <span>PHONE NUMBER</span>
+
               <input
                 name="phone"
                 type="tel"
@@ -167,49 +186,79 @@ export default function Home() {
             </label>
           </div>
 
-          <div className="decider">
-            <div className="decider-title">
-              <Icon tone="#c72535">◒</Icon>
-              <strong>DECIDER QUESTION</strong>
+          <div className="decider-column">
+            <div className="decider">
+              <div className="decider-title">
+                <Icon tone="#c72535">◒</Icon>
+                <strong>DECIDER QUESTION</strong>
+              </div>
+
+              <label htmlFor="decider">
+                If more than one entry guesses the correct number of rooms, the
+                winner will be selected by the closest answer to:
+              </label>
+
+              <p className="decider-question-text">
+                HOW LONG DOES IT TAKE THIS PLATE HEAT EXCHANGER TO FILL A 1000L
+                VESSEL WITH 60°C WATER, STARTING FROM 10°C?
+              </p>
+
+              <div className="decider-input">
+                <input
+                  id="decider"
+                  name="decider"
+                  required
+                  placeholder="Your answer"
+                />
+                <span>Seconds</span>
+              </div>
+
+              <p className="answer-guidance">
+                Answers must be submitted in seconds and will be rounded to the
+                nearest whole number.
+              </p>
             </div>
-
-            <label htmlFor="decider">
-              If more than one entry guesses the correct number of rooms, the
-              winner will be selected by the closest answer to:
-            </label>
-
-            <p className="decider-question-text">
-              HOW LONG DOES IT TAKE THIS PLATE HEAT EXCHANGER TO FILL A 1000L
-              VESSEL WITH 60°C WATER, STARTING FROM 10°C?
-            </p>
-
-            <div className="decider-input">
-              <input
-                id="decider"
-                name="decider"
-                required
-                placeholder="Your answer"
-              />
-              <span>Seconds</span>
-            </div>
-
-            <p className="answer-guidance">
-              Answers must be submitted in seconds and will be rounded to the
-              nearest whole number.
-            </p>
           </div>
 
-          <label className="consent">
-            <input type="checkbox" name="consent" value="yes" required />
-            <span>
-              I agree that my details can be used to administer this competition
-              and contact the winner.
-            </span>
-          </label>
+          <div className="consent-group">
+            <label className="consent">
+              <input
+                type="checkbox"
+                name="consent"
+                value="yes"
+                required
+              />
 
-          <button className="submit-button" disabled={status === "sending"}>
-            {status === "sending" ? "SUBMITTING…" : "SUBMIT MY ENTRY"}
-          </button>
+              <span>
+                I agree that my details can be used to administer this
+                competition and contact the winner.
+              </span>
+            </label>
+
+            <label className="consent">
+              <input
+                type="checkbox"
+                name="termsAccepted"
+                value="yes"
+                required
+              />
+
+              <span>
+                I agree to the terms and conditions of the competition as
+                displayed.
+              </span>
+            </label>
+          </div>
+
+          <div className="submit-row">
+            <button
+              type="submit"
+              className="submit-button"
+              disabled={status === "sending"}
+            >
+              {status === "sending" ? "SUBMITTING…" : "SUBMIT MY ENTRY"}
+            </button>
+          </div>
 
           {message && (
             <p className={`form-message ${status}`} role="status">
@@ -221,6 +270,7 @@ export default function Home() {
         <footer className="card-footer">
           <div className="footer-message">
             <span>♕</span>
+
             <p>
               <strong>
                 LEAVE YOUR DETAILS FOR
@@ -228,10 +278,10 @@ export default function Home() {
                 THE CHANCE TO WIN!
               </strong>
               <br />
+
               <small>The winner will be contacted after the event.</small>
             </p>
           </div>
-
         </footer>
       </section>
     </main>

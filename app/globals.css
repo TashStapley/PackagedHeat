@@ -1039,15 +1039,15 @@ input::placeholder {
 
 .badge {
   top: 90px;
-  right: 345px;
+  right: 315px;
 }
 
 .hero-brand {
   position: absolute;
-  top: 115px;
-  right: 45px;
+  top: 103px;
+  right: 55px;
   z-index: 3;
-  width: 260px;
+  width: 220px;
 }
 
 .hero-brand img {
@@ -1076,7 +1076,7 @@ input::placeholder {
 
   .hero-brand {
     top: 105px;
-    right: 35px;
+    right: 55px;
     width: 155px;
   }
 }
@@ -1109,3 +1109,388 @@ input::placeholder {
   }
 }
 
+.consent-group {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 10px;
+  max-width: 700px;
+  margin: 24px 0 16px;
+}
+
+.consent-group .consent {
+  margin: 0;
+}
+
+/* Landscape tablet layout: optimised for approximately 1024x768 to 1366x1024 */
+@media (min-width: 768px) and (max-width: 1366px) and (orientation: landscape) {
+  .page-shell {
+    min-height: 100vh;
+    padding: 8px;
+    place-items: start center;
+  }
+
+  .competition-card {
+    width: min(1180px, 100%);
+    min-height: calc(100vh - 16px);
+    padding: 22px 38px 0;
+  }
+
+  .hero-copy {
+    width: calc(100% - 360px);
+    padding-top: 0;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(39px, 5.2vw, 50px);
+    line-height: 0.88;
+  }
+
+  .title-underlines {
+    margin: 8px 0 7px;
+  }
+
+  .eyebrow,
+  .hero-copy .eyebrow {
+    margin-bottom: 6px;
+    font-size: 14px;
+    line-height: 1.25;
+  }
+
+  .instruction {
+    margin-top: 6px;
+    font-size: 15px;
+  }
+
+  .badge {
+    top: 42px;
+    right: 225px;
+    width: 125px;
+    height: 108px;
+  }
+
+  .badge .gift {
+    margin-bottom: 2px;
+    font-size: 23px;
+  }
+
+  .badge b {
+    font-size: 12px;
+  }
+
+  .hero-brand {
+    top: 55px;
+    right: 30px;
+    width: 180px;
+  }
+
+  .entry-form {
+    grid-template-columns: minmax(0, 1.35fr) minmax(285px, 0.8fr);
+    column-gap: 30px;
+    margin-top: 12px;
+  }
+
+  .answer-block {
+    grid-template-columns: 46px 175px 1fr;
+    min-height: 42px;
+    margin-bottom: 4px;
+  }
+
+  .details-grid {
+    gap: 2px;
+  }
+
+  .form-field {
+    grid-template-columns: 46px 132px 1fr;
+    min-height: 42px;
+  }
+
+  .field-icon {
+    width: 40px;
+    height: 35px;
+  }
+
+  .form-field > span:nth-child(2),
+  .answer-block label {
+    font-size: 12px;
+  }
+
+  input {
+    padding-top: 7px;
+    padding-bottom: 6px;
+    font-size: 14px;
+  }
+
+  .decider {
+    min-height: 214px;
+    margin-bottom: 2px;
+    padding: 12px 16px;
+  }
+
+  .decider-title {
+    grid-template-columns: 46px 1fr;
+    margin-bottom: 9px;
+    padding-bottom: 7px;
+  }
+
+  .decider-title strong {
+    font-size: 16px;
+  }
+
+  .decider label,
+  .decider-question-text,
+  .decider .answer-guidance {
+    font-size: 12px;
+    line-height: 1.25;
+  }
+
+  .decider-question-text {
+    margin: 7px 0;
+  }
+
+  .decider-input {
+    max-width: 190px;
+  }
+
+  .decider .answer-guidance {
+    margin-top: 7px;
+  }
+
+  .consent-group {
+    gap: 5px;
+    margin: 9px 0 8px;
+  }
+
+  .consent-group .consent {
+    min-height: 24px;
+    align-items: center;
+    font-size: 12px;
+  }
+
+  .consent input {
+    width: 20px;
+    height: 20px;
+  }
+
+  .submit-button {
+    min-height: 46px;
+    margin-bottom: 6px;
+    padding: 11px 28px;
+  }
+
+  .card-footer {
+    z-index: 1;
+    min-height: 178px;
+    margin: -35px -38px 0;
+    padding: 105px 38px 16px;
+  }
+
+  .footer-message > span {
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+  }
+
+  .footer-message p {
+    font-size: 13px;
+  }
+
+  .admin-page-button {
+    top: 8px;
+    right: 8px;
+    padding: 8px 13px;
+  }
+
+  .admin-shell {
+    min-height: 100vh;
+    padding: 12px;
+  }
+
+  .admin-card {
+    width: min(520px, 100%);
+    padding: 30px;
+  }
+
+  .admin-kicker {
+    margin-top: 18px;
+  }
+
+  .admin-card h1 {
+    font-size: 36px;
+  }
+
+  .admin-card form {
+    margin: 20px 0;
+  }
+}
+
+/* Extra compression for shorter landscape tablets without reducing touch targets */
+@media (min-width: 768px) and (max-width: 1366px) and (orientation: landscape) and (max-height: 700px) {
+  .competition-card {
+    padding-top: 15px;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(35px, 4.7vw, 43px);
+  }
+
+  .eyebrow,
+  .hero-copy .eyebrow {
+    font-size: 12px;
+  }
+
+  .instruction {
+    font-size: 13px;
+  }
+
+  .badge {
+    top: 28px;
+  }
+
+  .hero-brand {
+    top: 38px;
+  }
+
+  .entry-form {
+    margin-top: 6px;
+  }
+
+  .answer-block,
+  .form-field {
+    min-height: 38px;
+  }
+
+  .card-footer {
+    min-height: 150px;
+    margin-top: -42px;
+    padding-top: 88px;
+  }
+}
+
+/* Right-hand column containing the decider and competition badge */
+.decider-column {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Reset the decider's original grid positioning */
+.decider-column .decider {
+  grid-column: auto;
+  grid-row: auto;
+  align-self: stretch;
+  width: 100%;
+  margin: 0;
+}
+
+/* Place the navy hexagon underneath the decider */
+.decider-column .decider-badge {
+  position: static;
+  top: auto;
+  right: auto;
+  float: none;
+  flex-shrink: 0;
+  width: 125px;
+  height: 108px;
+  margin: 0;
+}
+
+.decider-column .decider-badge .gift {
+  margin-bottom: 2px;
+  font-size: 23px;
+}
+
+.decider-column .decider-badge b {
+  font-size: 12px;
+}
+
+@media (max-width: 760px) {
+  .decider-column {
+    display: flex;
+    width: 100%;
+    margin-top: 28px;
+  }
+
+  .decider-column .decider {
+    margin: 0;
+  }
+
+  .decider-column .decider-badge {
+    width: 125px;
+    height: 108px;
+  }
+}
+
+/* Align the submit button and competition hexagon */
+.submit-row {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  min-height: 110px;
+  margin-bottom: 6px;
+}
+
+.submit-row .submit-button {
+  grid-column: 2;
+  margin: 0;
+}
+
+.submit-row .submit-badge {
+  position: static;
+  grid-column: 3;
+  justify-self: center;
+  float: none;
+  width: 125px;
+  height: 108px;
+  margin: 0;
+}
+
+.submit-row .submit-badge .gift {
+  margin-bottom: 2px;
+  font-size: 23px;
+}
+
+.submit-row .submit-badge b {
+  font-size: 12px;
+}
+
+@media (max-width: 760px) {
+  .submit-row {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .submit-row .submit-button {
+    order: 1;
+  }
+
+  .submit-row .submit-badge {
+    order: 2;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1366px) and (orientation: landscape) {
+  .hero-brand {
+    right: 70px;
+  }
+}
+
+/* Make Packaged Heat logo bigger */
+.hero-brand {
+  width: 350px;
+}
+
+/* Move swoosh/footer up */
+
+.submit-row {
+  min-height: 90px;
+  margin-bottom: 0;
+}
+
+.card-footer {
+  margin-top: -100px;
+}
