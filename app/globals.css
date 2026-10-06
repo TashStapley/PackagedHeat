@@ -1494,3 +1494,36 @@ input::placeholder {
 .card-footer {
   margin-top: -100px;
 }
+
+/* FORM VALIDATION */
+
+.field-error {
+  display: block;
+  margin-top: 6px;
+  color: #c72535;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.input-error {
+  border-color: #c72535 !important;
+  outline-color: #c72535 !important;
+}
+
+.consent-wrapper {
+  width: 100%;
+}
+
+.consent-error {
+  margin-left: 28px;
+  margin-top: 5px;
+}
+
+.form-message.error {
+  color: #c72535;
+}
+
+.form-message.success {
+  color: #1f7a3f;
+}
